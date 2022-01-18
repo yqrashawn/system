@@ -13,7 +13,8 @@
         plugin = nvim-treesitter-textobjects;
         file = "nvim-treesitter-textobjects";
       })
-      completion-treesitter
+      cmp-treesitter
+      nvim-treesitter-refactor
     ];
   };
 }

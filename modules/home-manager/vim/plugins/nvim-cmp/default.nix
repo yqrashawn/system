@@ -6,8 +6,11 @@
         plugin = nvim-cmp;
         file = "nvim-cmp";
       })
-      vim-vsnip
-      vim-vsnip-integ
+      cmp-nvim-lsp
+      cmp-buffer
+      luasnip
+      cmp_luasnip
+      cmp-treesitter
     ];
   };
 }
