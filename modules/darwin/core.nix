@@ -1,7 +1,6 @@
 { inputs, config, pkgs, ... }:
 let prefix = "/run/current-system/sw/bin";
-in
-{
+in {
   # environment setup
   environment = {
     loginShell = pkgs.zsh;
@@ -14,7 +13,7 @@ in
     # systemPackages = [ ];
   };
 
-  fonts.enableFontDir = true;
+  fonts.fontDir.enable = true;
   nix.nixPath = [ "darwin=/etc/${config.environment.etc.darwin.target}" ];
   nix.extraOptions = ''
     extra-platforms = x86_64-darwin aarch64-darwin

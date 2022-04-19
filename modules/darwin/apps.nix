@@ -2,12 +2,19 @@
   imports = [ ./apps-minimal.nix ];
   homebrew = {
     casks = [
-      # "fork"
-      # "gpg-suite"
+      "xbar"
+      "firefox"
+      "gfxcardstatus"
+      "uhk-agent"
+      "slack"
+      "bitwarden"
+      "clickup"
+      "fork"
       "iina"
-      # "jetbrains-toolbox"
-      "keybase"
-      # "skim"
+      "gpg-suite-no-mail"
+      "firefox-developer-edition"
+      "todoist"
+      "skim"
       # "syncthing"
       "zoom"
     ];

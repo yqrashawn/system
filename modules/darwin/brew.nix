@@ -11,10 +11,11 @@
       "homebrew/bundle"
       "homebrew/cask"
       "homebrew/cask-fonts"
+      "homebrew/cask-drivers"
       "homebrew/cask-versions"
       "homebrew/core"
       "homebrew/services"
-      # "koekeishiya/formulae"
+      "koekeishiya/formulae"
       "teamookla/speedtest"
     ];
     # extraConfig = ''
