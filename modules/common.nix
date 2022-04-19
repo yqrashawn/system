@@ -8,7 +8,7 @@
   };
 
   user = {
-    description = "Kennan LeJeune";
+    description = "Rashawn Zhang";
     home = "${
         if pkgs.stdenvNoCC.isDarwin then "/Users" else "/home"
       }/${config.user.name}";
@@ -23,30 +23,135 @@
     extraSpecialArgs = { inherit inputs; };
     useGlobalPkgs = true;
     useUserPackages = true;
-    backupFileExtension = "backup";
+    # backupFileExtension = "backup";
   };
 
   # environment setup
   environment = {
     systemPackages = with pkgs; [
-      # editors
-      neovim
+    vim
 
-      # standard toolset
-      coreutils-full
-      curl
-      wget
-      git
-      jq
+     # clojure
+    clojure
+    clojure-lsp
+    ispell
+    isync
+    babashka
+    clj-kondo
+    joker
+    leiningen
+    obb
+    # nbb
 
-      # helpful shell stuff
-      bat
-      fzf
-      ripgrep
+    # tools
+    notmuch
+    tmux
+    zsh
+    bash
+    git
+    neovim
+    mu
+    # macvim # use vim
+    bitwarden-cli
+    # firefox
+    # firefox-devedition-bin
+    sqlite
+    yabai
+    sketchybar
 
-      # languages
-      python3
-      ruby
+    # cli tools
+    ripgrep
+    htop
+    hub
+    mcfly
+    fnm
+    shellcheck
+    proselint
+    trash-cli
+    delta
+    du-dust
+    duf # du
+    jq
+    fd
+    # httpie # failed to build
+    tldr
+    procs # ps
+    bottom # btm htop
+    thefuck
+    curlie # httpie
+    glances # htop
+    xh # httpie
+    shfmt
+    hunspell
+    enchant # ispell
+    w3m
+    starship
+    broot # ranger
+    direnv
+    exa
+    fasd
+    fzf
+    coreutils-full
+    pngquant
+    rbenv
+    jless # json viewer
+    gnupg
+    zoxide # fasd
+    lazygit
+    watchexec
+    wget
+    curl
+    # grip # markdown preview, failed to build
+    multimarkdown
+    brotli
+    automake
+    autoconf
+    bat
+    bat-extras.batdiff
+    bat-extras.batgrep
+    bat-extras.batman
+    bat-extras.batwatch
+    bat-extras.prettybat
+    gnutls
+    openssl
+    ffmpeg
+    pandoc
+    cmake
+    goku
+    nixfmt
+    rnix-lsp
+
+    # langs
+    yarn
+    lua
+    deno
+    fennel
+    lua
+    luarocks
+    # zig # marked broken
+    go
+    plantuml
+    rustup
+
+    # entertainment
+    youtube-dl
+    yt-dlp
+    streamlink
+    mpv
+    you-get
+
+    # lib
+    # libgccjit
+    rlwrap
+    readline
+    llvm
+    # texinfo # cllision to pod2texi
+    pkg-config
+    pcre
+
+    # not available
+    # du
+    # percol
     ];
     etc = {
       home-manager.source = "${inputs.home-manager}";

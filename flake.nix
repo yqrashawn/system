@@ -5,13 +5,11 @@
     substituters = [
       "https://cache.nixos.org"
       "https://nix-community.cachix.org"
-      "https://kclejeune.cachix.org"
     ];
 
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "kclejeune.cachix.org-1:fOCrECygdFZKbMxHClhiTS6oowOkJ/I/dh9q9b1I4ko="
     ];
   };
 
@@ -34,7 +32,7 @@
       flake = false;
     };
     darwin = {
-      url = "github:kclejeune/nix-darwin/backup-etc";
+      url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
@@ -180,21 +178,21 @@
 
       homeConfigurations = {
         server = mkHomeConfig {
-          username = "kclejeune";
+          username = "yqrashawn";
           extraModules = [ ./profiles/home-manager/personal.nix ];
         };
         darwinServer = mkHomeConfig {
-          username = "kclejeune";
+          username = "yqrashawn";
           system = "x86_64-darwin";
           extraModules = [ ./profiles/home-manager/personal.nix ];
         };
         darwinServerM1 = mkHomeConfig {
-          username = "kclejeune";
+          username = "yqrashawn";
           system = "aarch64-darwin";
           extraModules = [ ./profiles/home-manager/personal.nix ];
         };
         workServer = mkHomeConfig {
-          username = "lejeukc1";
+          username = "yqrashawn";
           extraModules = [ ./profiles/home-manager/work.nix ];
         };
         vagrant = mkHomeConfig {

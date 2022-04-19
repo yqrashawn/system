@@ -1,12 +1,13 @@
 { config, lib, pkgs, ... }: {
   homebrew = {
     casks = [
-      "1password-beta"
-      "bartender"
+      # "1password-beta"
+      # "bartender"
       "firefox-beta"
+      "alacritty"
       "kitty"
       "raycast"
-      "stats"
+      # "stats"
       "visual-studio-code"
     ];
   };

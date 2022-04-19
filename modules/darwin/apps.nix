@@ -2,13 +2,13 @@
   imports = [ ./apps-minimal.nix ];
   homebrew = {
     casks = [
-      "fork"
-      "gpg-suite"
+      # "fork"
+      # "gpg-suite"
       "iina"
-      "jetbrains-toolbox"
+      # "jetbrains-toolbox"
       "keybase"
-      "skim"
-      "syncthing"
+      # "skim"
+      # "syncthing"
       "zoom"
     ];
     masApps = { };

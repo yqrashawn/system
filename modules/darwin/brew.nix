@@ -14,12 +14,12 @@
       "homebrew/cask-versions"
       "homebrew/core"
       "homebrew/services"
-      "koekeishiya/formulae"
+      # "koekeishiya/formulae"
       "teamookla/speedtest"
     ];
-    extraConfig = ''
-      brew "yabai", restart_service: "changed"
-    '';
+    # extraConfig = ''
+    #   brew "yabai", restart_service: "changed"
+    # '';
     casks = [ "hammerspoon" ];
   };
 }

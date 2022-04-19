@@ -20,8 +20,8 @@
     enable = true;
     lfs.enable = true;
     package = pkgs.git;
-    userEmail = "kennan.lejeune@jhuapl.edu";
-    userName = "Kennan LeJeune";
+    userEmail = "namy.19@gmail.com";
+    userName = "Rashawn Zhang";
     extraConfig = {
       http.sslVerify = true;
       http.sslCAInfo = "/etc/ssl/certs/ca-certificates.crt";

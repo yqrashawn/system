@@ -19,7 +19,7 @@ in
     ./kitty
     ./dotfiles
     ./git.nix
-    ./1password
+    # ./1password
   ];
 
   nixpkgs.config = {
@@ -59,49 +59,49 @@ in
 
       # define package definitions for current user environment
       packages = with pkgs; [
+        pkgs.python3
         # python with default packages
-        (pkgs.python3.withPackages
-          (ps: with ps; [ black numpy scipy networkx matplotlib ]))
+        # (pkgs.python3.withPackages
+        #   (ps: with ps; [ black numpy scipy networkx matplotlib ]))
         cachix
-        comma
-        curl
-        fd
-        ffmpeg
-        gawk
-        ghc
-        git
-        gnugrep
-        gnupg
-        gnused
-        htop
-        httpie
-        jq
-        luajit
-        mmv
-        neofetch
-        nix
-        nixfmt
-        nixpkgs-fmt
-        nodejs_latest
-        openjdk
-        openssh
-        pandoc
-        parallel
-        pkgs.coreutils-full
-        poetry
-        pre-commit
-        ranger
-        (pkgs.ruby.withPackages (ps: with ps; [ rufo solargraph ]))
-        ripgrep
-        rsync
-        shellcheck
-        stylua
-        sysdo
-        tealdeer
-        terraform
-        treefmt
-        vagrant
-        yarn
+        # comma
+        # curl
+        # fd
+        # gawk
+        # ghc
+        # git
+        # gnugrep
+        # gnupg
+        # gnused
+        # htop
+        # # httpie
+        # jq
+        # luajit
+        # mmv
+        # neofetch
+        # nix
+        # nixfmt
+        # nixpkgs-fmt
+        # nodejs_latest
+        # openjdk
+        # openssh
+        # pandoc
+        # parallel
+        # pkgs.coreutils-full
+        # poetry
+        # pre-commit
+        # ranger
+        # (pkgs.ruby.withPackages (ps: with ps; [ rufo solargraph ]))
+        # ripgrep
+        # rsync
+        # shellcheck
+        # stylua
+        # sysdo
+        # tealdeer
+        # terraform
+        # treefmt
+        # vagrant
+        # yarn
       ];
     };
 
