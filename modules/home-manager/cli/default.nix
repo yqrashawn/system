@@ -3,28 +3,25 @@ let
   functions = builtins.readFile ./functions.sh;
   useSkim = false;
   useFzf = !useSkim;
-  fuzz =
-    let fd = "${pkgs.fd}/bin/fd";
-    in
-    rec {
-      defaultCommand = "${fd} -H --type f";
-      defaultOptions = [ "--height 50%" ];
-      fileWidgetCommand = "${defaultCommand}";
-      fileWidgetOptions = [
-        "--preview '${pkgs.bat}/bin/bat --color=always --plain --line-range=:200 {}'"
-      ];
-      changeDirWidgetCommand = "${fd} --type d";
-      changeDirWidgetOptions =
-        [ "--preview '${pkgs.tree}/bin/tree -C {} | head -200'" ];
-      historyWidgetOptions = [ ];
-    };
+  fuzz = let fd = "${pkgs.fd}/bin/fd";
+  in rec {
+    defaultCommand = "${fd} -H --type f";
+    defaultOptions = [ "--height 50%" ];
+    fileWidgetCommand = "${defaultCommand}";
+    fileWidgetOptions = [
+      "--preview '${pkgs.bat}/bin/bat --color=always --plain --line-range=:200 {}'"
+    ];
+    changeDirWidgetCommand = "${fd} --type d";
+    changeDirWidgetOptions =
+      [ "--preview '${pkgs.tree}/bin/tree -C {} | head -200'" ];
+    historyWidgetOptions = [ ];
+  };
   aliases = lib.mkIf pkgs.stdenvNoCC.isDarwin {
     # darwin specific aliases
     ibrew = "arch -x86_64 brew";
     abrew = "arch -arm64 brew";
   };
-in
-{
+in {
   home.packages = [ pkgs.tree ];
   programs = {
     direnv = {
@@ -98,61 +95,57 @@ in
       '';
     };
     nix-index.enable = true;
-    zsh =
-      let
-        mkZshPlugin = { pkg, file ? "${pkg.pname}.plugin.zsh" }: rec {
-          name = pkg.pname;
-          src = pkg.src;
-          inherit file;
-        };
-      in
-      {
-        enable = true;
-        autocd = true;
-        dotDir = ".config/zsh";
-        localVariables = {
-          LANG = "en_US.UTF-8";
-          GPG_TTY = "/dev/ttys000";
-          DEFAULT_USER = "${config.home.username}";
-          CLICOLOR = 1;
-          LS_COLORS = "ExFxBxDxCxegedabagacad";
-          TERM = "xterm-256color";
-        };
-        shellAliases = aliases;
-        initExtraBeforeCompInit = ''
-          fpath+=~/.zfunc
-        '';
-        initExtra = ''
-          ${functions}
-          ${lib.optionalString pkgs.stdenvNoCC.isDarwin ''
-            if [[ -d /opt/homebrew ]]; then
-              eval "$(/opt/homebrew/bin/brew shellenv)"
-            fi
-          ''}
-          unset RPS1
-        '';
-        profileExtra = ''
-          ${lib.optionalString pkgs.stdenvNoCC.isLinux "[[ -e /etc/profile ]] && source /etc/profile"}
-        '';
-        plugins = with pkgs; [
-          (mkZshPlugin { pkg = zsh-autopair; })
-          (mkZshPlugin { pkg = zsh-completions; })
-          (mkZshPlugin { pkg = zsh-autosuggestions; })
-          (mkZshPlugin {
-            pkg = zsh-fast-syntax-highlighting;
-            file = "fast-syntax-highlighting.plugin.zsh";
-          })
-          (mkZshPlugin { pkg = zsh-history-substring-search; })
-        ];
-        oh-my-zsh = {
-          enable = true;
-          plugins = [ "git" "sudo" ];
-        };
+    zsh = let
+      mkZshPlugin = { pkg, file ? "${pkg.pname}.plugin.zsh" }: rec {
+        name = pkg.pname;
+        src = pkg.src;
+        inherit file;
       };
+    in {
+      enable = false;
+      autocd = true;
+      # dotDir = ".zprezto/runcoms";
+      localVariables = {
+        LANG = "en_US.UTF-8";
+        GPG_TTY = "/dev/ttys000";
+        DEFAULT_USER = "${config.home.username}";
+        CLICOLOR = 1;
+        LS_COLORS = "ExFxBxDxCxegedabagacad";
+        TERM = "xterm-256color";
+      };
+      shellAliases = aliases;
+      initExtra = ''
+        ${functions}
+        ${lib.optionalString pkgs.stdenvNoCC.isDarwin ''
+          if [[ -d /opt/homebrew ]]; then
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+          fi
+        ''}
+        unset RPS1
+      '';
+      profileExtra = ''
+        ${lib.optionalString pkgs.stdenvNoCC.isLinux
+        "[[ -e /etc/profile ]] && source /etc/profile"}
+      '';
+      oh-my-zsh = {
+        enable = false;
+        plugins = [ "git" "sudo" ];
+      };
+      prezto = {
+        enable = false;
+        pmoduleDirs = "$HOME/.zprezto/contrib";
+      };
+    };
     zoxide.enable = true;
     starship = {
       enable = true;
       package = pkgs.stable.starship;
     };
+    tmux = {
+      enable = true;
+      extraConfig = "source ~/.tmux/.tmux.conf";
+      # extraConfig = builtins.readFile "${config.home.homeDirectory}/.tmux.conf";
+    };
+
   };
 }

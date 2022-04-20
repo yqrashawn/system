@@ -29,8 +29,6 @@
   # environment setup
   environment = {
     systemPackages = with pkgs; [
-      vim
-
       # clojure
       clojure
       clojure-lsp
@@ -45,6 +43,8 @@
 
       # tools
       notmuch
+      vim
+      cachix
       tmux
       zsh
       bash
@@ -74,7 +74,7 @@
       jq
       fd
       # httpie # failed to build
-      tldr
+      tealdeer # tldr in rust
       procs # ps
       bottom # btm htop
       thefuck
@@ -92,7 +92,9 @@
       fasd
       fzf
       coreutils-full
+      gnused
       pngquant
+      optipng
       rbenv
       jless # json viewer
       gnupg
@@ -101,6 +103,8 @@
       watchexec
       wget
       curl
+      rsync
+      treefmt
       # grip # markdown preview, failed to build
       multimarkdown
       brotli
@@ -118,20 +122,36 @@
       pandoc
       cmake
       # goku
+      nix
       nixfmt
+      nixpkgs-fmt
       rnix-lsp
+      pandoc
+      openssh
+      neofetch
+      parallel
+      # terraform
+      # vagrant
+      pre-commit
+      # espanso # build failed
 
       # langs
       yarn
-      lua
+      # lua
+      luajit
+      stylua
       deno
       fennel
-      lua
       luarocks
       # zig # marked broken
       go
       plantuml
       rustup
+      (pkgs.ruby.withPackages (ps: with ps; [ rufo solargraph ]))
+      python3
+      ghc
+      openjdk
+      gawk
 
       # entertainment
       youtube-dl
@@ -159,7 +179,7 @@
       stable.source = "${inputs.stable}";
     };
     # list of acceptable shells in /etc/shells
-    shells = with pkgs; [ bash zsh fish ];
+    shells = with pkgs; [ bash zsh ];
   };
 
   fonts.fonts = with pkgs; [ jetbrains-mono ];

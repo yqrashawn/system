@@ -15,12 +15,12 @@
       target = ".zfunc";
       recursive = true;
     };
-    npmrc = {
-      text = ''
-        prefix = ${config.home.sessionVariables.NODE_PATH};
-      '';
-      target = ".npmrc";
-    };
+    # npmrc = {
+    #   text = ''
+    #     prefix = ${config.home.sessionVariables.NODE_PATH};
+    #   '';
+    #   target = ".npmrc";
+    # };
   };
 
   # xdg.enable = true;

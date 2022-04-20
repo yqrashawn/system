@@ -2,6 +2,7 @@
   imports = [ ./apps-minimal.nix ];
   homebrew = {
     casks = [
+      "figma"
       "xbar"
       "firefox"
       "gfxcardstatus"
@@ -15,7 +16,13 @@
       "firefox-developer-edition"
       "todoist"
       "skim"
+      "telegram"
+      "discord"
+      "dropbox"
+      "calibre"
+      "ngrok"
       # "syncthing"
+      "stats"
       "zoom"
     ];
     masApps = { };
