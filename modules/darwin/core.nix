@@ -7,7 +7,19 @@ let
   xdg_configHome = "${home}/.config";
   xdg_dataHome = "${home}/.local/share";
   xdg_cacheHome = "${home}/.cache";
+  iterate = StartInterval: {
+    inherit StartInterval;
+    Nice = 5;
+    LowPriorityIO = true;
+    AbandonProcessGroup = true;
+  };
+  runCommand = command: {
+    inherit command;
+    serviceConfig.RunAtLoad = true;
+    serviceConfig.KeepAlive = true;
+  };
 in {
+  imports = [ ./daemons ./user-agents ];
   # environment setup
   environment = {
     loginShell = pkgs.zsh;
@@ -29,40 +41,6 @@ in {
 
     # packages installed in system profile
     # systemPackages = [ ];
-  };
-
-  launchd = let
-    iterate = StartInterval: {
-      inherit StartInterval;
-      Nice = 5;
-      LowPriorityIO = true;
-      AbandonProcessGroup = true;
-    };
-    runCommand = command: {
-      inherit command;
-      serviceConfig.RunAtLoad = true;
-      serviceConfig.KeepAlive = true;
-    };
-  in {
-    daemons = {
-      limit-maxfiles = {
-        script = "/bin/launchctl limit maxfiles 65536 65536";
-        serviceConfig.RunAtLoad = true;
-        serviceConfig.KeepAlive = false;
-      };
-      limit-maxproc = {
-        script = "/bin/launchctl limit maxproc 4176 4176";
-        serviceConfig.RunAtLoad = true;
-        serviceConfig.KeepAlive = false;
-      };
-      set-path = {
-        script = ''
-          export PATH=/run/current-system/sw/bin:$PATH
-        '';
-        serviceConfig.RunAtLoad = true;
-        serviceConfig.KeepAlive = false;
-      };
-    };
   };
 
   fonts.fontDir.enable = true;
