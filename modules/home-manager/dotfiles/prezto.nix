@@ -4,7 +4,7 @@
   programs.zsh.prezto = {
     caseSensitive = false;
     color = true;
-    pmoduleDirs = [ "$HOME/.zprezto-contrib" ];
+    # pmoduleDirs = [ "$HOME/.zprezto-contrib" ];
     extraConfig = "";
     extraModules = [ "attr" "stat" ];
     extraFunctions = [ "zargs" "zmv" ];

@@ -131,10 +131,7 @@ in {
         enable = false;
         plugins = [ "git" "sudo" ];
       };
-      prezto = {
-        enable = false;
-        pmoduleDirs = "$HOME/.zprezto/contrib";
-      };
+      prezto = { enable = true; };
     };
     zoxide.enable = true;
     starship = {
