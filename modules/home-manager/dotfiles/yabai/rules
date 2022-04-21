@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+export PATH=/run/current-system/sw/bin:$PATH
+
 DISPLAY_COUNT=$(yabai -m query --displays | jq length)
 if [[ $DISPLAY_COUNT -eq 1 ]] && [[ ! "$($HOME/local/bin/has-lg-4k-hdr)" ]]; then
   yabai -m rule --add app=".*" space=1

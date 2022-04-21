@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+export PATH=/run/current-system/sw/bin:$PATH
+
 # general space settings
 if [ "$($HOME/local/bin/has-lg-4k-hdr)" ]; then
   yabai -m config layout bsp

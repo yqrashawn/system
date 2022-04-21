@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+export PATH=/run/current-system/sw/bin:$PATH
+
 bb="bb -cp ~/.config/bblib/"
 
 # refocus on window/app closed/quit
