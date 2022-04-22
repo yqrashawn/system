@@ -1,7 +1,7 @@
 { config, inputs, pkgs, lib, ... }:
 let
   functions = builtins.readFile ./functions.sh;
-  useSkim = false;
+  useSkim = true;
   useFzf = !useSkim;
   fuzz = let fd = "${pkgs.fd}/bin/fd";
   in rec {
@@ -14,6 +14,7 @@ let
     changeDirWidgetCommand = "${fd} --type d";
     changeDirWidgetOptions =
       [ "--preview '${pkgs.tree}/bin/tree -C {} | head -200'" ];
+    # historyWidgetOptions = [ "--tac" "--exact" ];
     historyWidgetOptions = [ ];
   };
   aliases = lib.mkIf pkgs.stdenvNoCC.isDarwin {
@@ -76,6 +77,14 @@ in {
         color = "always";
       };
     };
+    mcfly = {
+      enable = true;
+      keyScheme = "vim";
+      enableFuzzySearch = true;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+    };
     jq.enable = true;
     htop.enable = true;
     gpg.enable = true;
@@ -97,6 +106,15 @@ in {
       shellAliases = aliases;
       initExtra = ''
         ${functions}
+      '';
+      profileExtra = ''
+          ${
+            lib.optionalString pkgs.stdenvNoCC.isLinux
+            "[[ -e /etc/profile ]] && source /etc/profile"
+          }
+          [[ ! -f ~/Dropbox/sync/sync.zsh ]] || source ~/Dropbox/sync/sync.zsh
+        export JAVVA_INDEX='https://github.com/yqrashawn/jabba/raw/master/index.json'
+        [ -s $HOME/.jabba/jabba.sh ] && source $HOME/.jabba/jabba.sh && jabba use adopt@1.11.0-11
       '';
     };
     nix-index.enable = true;
@@ -134,12 +152,12 @@ in {
       shellAliases = aliases;
       initExtra = ''
         # Stop TRAMP (in Emacs) from hanging or term/shell from echoing back commands
-        if [[ $TERM == dumb || -n $INSIDE_EMACS ]]; then
-          unsetopt zle prompt_cr prompt_subst
-          whence -w precmd >/dev/null && unfunction precmd
-          whence -w preexec >/dev/null && unfunction preexec
-          PS1='$ '
-        fi
+        #if [[ $TERM == dumb || -n $INSIDE_EMACS ]]; then
+        #  unsetopt zle prompt_cr prompt_subst
+        #  whence -w precmd >/dev/null && unfunction precmd
+        #  whence -w preexec >/dev/null && unfunction preexec
+        #  PS1='$ '
+        #fi
 
         ${functions}
         ${lib.optionalString pkgs.stdenvNoCC.isDarwin ''
@@ -151,15 +169,26 @@ in {
         [[ ! -f ~/.local.zsh ]] || source ~/.local.zsh
       '';
       profileExtra = ''
-        ${lib.optionalString pkgs.stdenvNoCC.isLinux
-        "[[ -e /etc/profile ]] && source /etc/profile"}
-        [[ ! -f ~/Dropbox/sync/sync.zsh ]] || source ~/Dropbox/sync/sync.zsh
+          ${
+            lib.optionalString pkgs.stdenvNoCC.isLinux
+            "[[ -e /etc/profile ]] && source /etc/profile"
+          }
+          [[ ! -f ~/Dropbox/sync/sync.zsh ]] || source ~/Dropbox/sync/sync.zsh
+        export JAVVA_INDEX='https://github.com/yqrashawn/jabba/raw/master/index.json'
+        [ -s $HOME/.jabba/jabba.sh ] && source $HOME/.jabba/jabba.sh && jabba use adopt@1.11.0-11
       '';
       plugins = [
         {
           name = "fast-syntax-highlighting";
           file = "fast-syntax-highlighting.plugin.zsh";
           src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+        }
+        {
+          # https://github.com/starship/starship/issues/1721#issuecomment-780250578
+          # stop eating lines this is not pacman
+          name = "zsh-vi-mode";
+          file = "zsh-vi-mode.plugin.zsh";
+          src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/";
         }
         {
           name = "alias-tips";

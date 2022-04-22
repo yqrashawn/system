@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 
-{
+let uhome = config.home.homeDirectory;
+in {
   programs.zsh.prezto = {
     caseSensitive = false;
     color = true;
     # pmoduleDirs = [ "$HOME/.zprezto-contrib" ];
-    extraConfig = "";
     extraModules = [ "attr" "stat" ];
     extraFunctions = [ "zargs" "zmv" ];
     pmodules = [
