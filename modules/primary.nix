@@ -1,8 +1,7 @@
 { config, lib, options, ... }:
 # module used courtesy of @i077 - https://github.com/i077/system/
 let inherit (lib) mkAliasDefinitions mkOption types;
-in
-{
+in {
   # Define some aliases for ease of use
   options = {
     user = mkOption {
@@ -23,5 +22,10 @@ in
 
     # user -> users.users.<primary user>
     users.users.${config.user.name} = mkAliasDefinitions options.user;
+
+    # users.users.yqrashawn = {
+    #   isNormalUser = true;
+    #   passwordFile = config.sops.secrets.yqrashawn.path;
+    # };
   };
 }

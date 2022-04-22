@@ -1,10 +1,17 @@
-{ inputs, config, lib, pkgs, ... }: {
+{ inputs, config, pkgs, ... }: {
   imports = [ ./primary.nix ./nixpkgs.nix ./overlays.nix ];
 
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     enableBashCompletion = true;
+    enableFzfCompletion = true;
+    enableSyntaxHighlighting = true;
+    enableFzfHistory = true;
+    enableFzfGit = true;
+    interactiveShellInit = ''
+      export PATH="/Applications/Emacs.app/Contents/MacOS/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin:$HOME/.emacs.d/bin:$HOME/local/bin/funcs:$HOME/local/bin:$PATH"
+    '';
   };
 
   user = {
@@ -134,6 +141,7 @@
       # vagrant
       pre-commit
       # espanso # build failed
+      nix-doc
 
       # langs
       yarn

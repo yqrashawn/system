@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, inputs, pkgs, lib, ... }:
 let
   functions = builtins.readFile ./functions.sh;
   useSkim = false;
@@ -20,12 +20,31 @@ let
     # darwin specific aliases
     ibrew = "arch -x86_64 brew";
     abrew = "arch -arm64 brew";
+    d = "cd ~/Downloads/";
+    wo = "cd ~/workspace/office";
+    wt = "cd ~/workspace/third";
+    wh = "cd ~/workspace/home";
+    o = "open";
+    p2 = "percol";
+    cleanup = "find . -type f -name '*.DS_Store' -ls -delete";
+    reload = "exec $SHELL -l";
+    rreload = "rm -rf ~/.cache/prezto/zcompdump && exec $SHELL -l";
+    cd = "z";
+    j = "z";
+
+    l = "exa -al";
+    # ls = "exa -a";
+    lsa = "exa -abghl --git --color=automatic";
+    lsd = "exa -l --color=automatic | grep --color=never '^d'";
+    lst = "exa --sort=created --time=created --long --all -r | sed 15q";
   };
 in {
   home.packages = [ pkgs.tree ];
   programs = {
     direnv = {
       enable = true;
+      enableBashIntegration = true;
+      # enableZshIntegration = true;
       nix-direnv.enable = true;
       stdlib = ''
         # stolen from @i077; store .direnv in cache instead of project dir
@@ -35,20 +54,6 @@ in {
                 echo -n "${config.xdg.cacheHome}"/direnv/layouts/
                 echo -n "$PWD" | shasum | cut -d ' ' -f 1
             )}"
-        }
-
-        layout_poetry() {
-          if [[ ! -f pyproject.toml ]]; then
-            log_error 'No pyproject.toml found. Use `poetry new` or `poetry init` to create one first.'
-            exit 2
-          fi
-
-          # create venv if it doesn't exist
-          poetry run true
-
-          export VIRTUAL_ENV=$(poetry env info --path)
-          export POETRY_ACTIVE=1
-          PATH_add "$VIRTUAL_ENV/bin"
         }
       '';
     };
@@ -102,19 +107,40 @@ in {
         inherit file;
       };
     in {
-      enable = false;
+      enable = true;
       autocd = true;
-      # dotDir = ".zprezto/runcoms";
+      # enableSyntaxHighlighting = true;
+      enableAutosuggestions = true;
+      shellGlobalAliases = {
+        UUID = "$(uuidgen | tr -d \\n)";
+        G = "| grep";
+      };
+      dirHashes = {
+        home = "$HOME";
+        docs = "$HOME/Documents";
+        vids = "$HOME/Videos";
+        dl = "$HOME/Downloads";
+      };
       localVariables = {
         LANG = "en_US.UTF-8";
         GPG_TTY = "/dev/ttys000";
         DEFAULT_USER = "${config.home.username}";
         CLICOLOR = 1;
+        EDITOR = "emacsclient";
+        VISUAL = "emacsclient";
         LS_COLORS = "ExFxBxDxCxegedabagacad";
         TERM = "xterm-256color";
       };
       shellAliases = aliases;
       initExtra = ''
+        # Stop TRAMP (in Emacs) from hanging or term/shell from echoing back commands
+        if [[ $TERM == dumb || -n $INSIDE_EMACS ]]; then
+          unsetopt zle prompt_cr prompt_subst
+          whence -w precmd >/dev/null && unfunction precmd
+          whence -w preexec >/dev/null && unfunction preexec
+          PS1='$ '
+        fi
+
         ${functions}
         ${lib.optionalString pkgs.stdenvNoCC.isDarwin ''
           if [[ -d /opt/homebrew ]]; then
@@ -122,18 +148,40 @@ in {
           fi
         ''}
         unset RPS1
+        [[ ! -f ~/.local.zsh ]] || source ~/.local.zsh
       '';
       profileExtra = ''
         ${lib.optionalString pkgs.stdenvNoCC.isLinux
         "[[ -e /etc/profile ]] && source /etc/profile"}
+        [[ ! -f ~/Dropbox/sync/sync.zsh ]] || source ~/Dropbox/sync/sync.zsh
       '';
+      plugins = [
+        {
+          name = "fast-syntax-highlighting";
+          file = "fast-syntax-highlighting.plugin.zsh";
+          src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+        }
+        {
+          name = "alias-tips";
+          src = inputs.zsh-alias-tips;
+        }
+        # {
+        #   name = "zsh-abbrev-alias";
+        #   src = inputs.zsh-abbrev-alias;
+        #   file = "abbrev-alias.plugin.zsh";
+        # }
+      ];
       oh-my-zsh = {
-        enable = false;
-        plugins = [ "git" "sudo" ];
+        enable = true;
+        plugins = [ "direnv" "aliases" "emacs" "yarn" "globalias" ];
       };
       prezto = { enable = true; };
     };
-    zoxide.enable = true;
+    zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
     starship = {
       enable = true;
       package = pkgs.stable.starship;

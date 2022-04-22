@@ -15,6 +15,7 @@
       "homebrew/cask-versions"
       "homebrew/core"
       "homebrew/services"
+      "homebrew/command-not-found"
       "koekeishiya/formulae"
       "teamookla/speedtest"
     ];

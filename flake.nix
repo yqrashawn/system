@@ -20,6 +20,9 @@
     nixos-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     small.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    sops-nix.url = "github:Mic92/sops-nix";
+
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
 
     comma = {
       url = "github:nix-community/comma";
@@ -37,9 +40,23 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zsh-f-sy-h = {
+      url = "github:z-shell/F-Sy-H";
+      flake = false;
+    };
+    zsh-abbrev-alias = {
+      url = "github:momo-lab/zsh-abbrev-alias";
+      flake = false;
+    };
+    zsh-alias-tips = {
+      url = "github:djui/alias-tips";
+      flake = false;
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, darwin, home-manager, flake-utils, ... }:
+  outputs =
+    inputs@{ self, nixpkgs, darwin, home-manager, sops-nix, flake-utils, ... }:
     let
       inherit (darwin.lib) darwinSystem;
       inherit (nixpkgs.lib) nixosSystem;
@@ -68,6 +85,7 @@
       mkNixosConfig = { system ? "x86_64-linux", nixpkgs ? inputs.nixos-unstable
         , stable ? inputs.stable, hardwareModules, baseModules ? [
           home-manager.nixosModules.home-manager
+          sops-nix.nixosModules.sops
           ./modules/nixos
         ], extraModules ? [ ] }:
         nixosSystem {
@@ -179,6 +197,14 @@
     # add a devShell to this flake
     eachDefaultSystem (system:
       let
+        inherit (lib.my) mapModules mapModulesRec mapHosts;
+        lib = nixpkgs.lib.extend (self: super: {
+          my = import ./lib {
+            inherit pkgs inputs;
+            lib = self;
+          };
+        });
+
         pkgs = import nixpkgs {
           inherit system;
           overlays = [ inputs.devshell.overlay ];

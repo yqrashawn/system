@@ -23,15 +23,12 @@
       "node"
       "ssh"
       "git"
-      "abbrev"
       "spectrum"
       "python"
+      "command-not-found"
       "ruby"
-      "direnv"
-      "alias-tips"
       "completion"
-      "autosuggestions"
-      "fast-syntax-highlighting"
+      # "autosuggestions"
       "history-substring-search"
     ];
     editor = {

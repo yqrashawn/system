@@ -28,7 +28,13 @@ in {
       darwin.source = "${inputs.darwin}";
       profile = { source = ./root-profile; };
     };
-    variables = { EDITOR = "emacsclient"; };
+    variables = {
+      EDITOR = "emacsclient";
+      LSP_USE_PLISTS = "true";
+      HTTPS_PROXY = "http://127.0.0.1:6152";
+      HTTP_PROXY = "http://127.0.0.1:6152";
+      ALL_PROXY = "socks5://127.0.0.1:6153";
+    };
 
     # launchDaemons = {
     #   "limit.maxfile.plist" = { source = ./limit.maxfile.plist; };
@@ -40,13 +46,14 @@ in {
     # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
 
     # packages installed in system profile
-    # systemPackages = [ ];
+    systemPackages = with pkgs; [ nix-doc sops ];
   };
 
   fonts.fontDir.enable = true;
   nix.nixPath = [ "darwin=/etc/${config.environment.etc.darwin.target}" ];
   nix.extraOptions = ''
     extra-platforms = x86_64-darwin aarch64-darwin
+    plugin-files = ${pkgs.nix-doc}/lib/libnix_doc_plugin.so
   '';
 
   # auto manage nixbld users with nix darwin
