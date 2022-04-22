@@ -142,6 +142,8 @@
       pre-commit
       # espanso # build failed
       nix-doc
+      gawk
+      flyctl
 
       # langs
       yarn
@@ -159,7 +161,6 @@
       python3
       ghc
       openjdk
-      gawk
 
       # entertainment
       youtube-dl
