@@ -42,6 +42,13 @@
       virtualenvAutoSwitch = true;
       virtualenvInitialize = true;
     };
+    terminal = {
+      autoTitle = true;
+      windowTitleFormat = "%n@%m: %s %d";
+      tabTitleFormat = "%m: %s %d";
+      multiplexerTitleFormat = "%n@%m: %s %d";
+    };
+    tmux = { autoStartLocal = true; };
     ssh.identities = [ "id_rsa" "id_rsa_holy" "id_rsa_website_jump" ];
   };
 }
