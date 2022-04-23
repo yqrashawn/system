@@ -1,13 +1,28 @@
-{ config, pkgs, lib, ... }: {
+{ inputs, config, pkgs, lib, ... }: {
   home.file = {
     # hammerspoon = lib.mkIf pkgs.stdenvNoCC.isDarwin {
     #   source = ./hammerspoon;
     #   target = ".hammerspoon";
     #   recursive = true;
     # };
+    # ".hammerspoon".source = inputs.spacehammer;
+    # spoons = {
+    #   source = ./Spoons;
+    #   target = ".hammerspoon/Spoons";
+    #   recursive = true;
+    # };
+    spacehammer = {
+      source = ./.spacehammer;
+      target = ".spacehammer";
+      recursive = true;
+    };
     ripgrep = {
       source = ./.ripgreprc;
       target = ".ripgreprc";
+    };
+    editorconfig = {
+      source = ./.editorconfig;
+      target = ".editorconfig";
     };
     local-bins = {
       source = ./local-bins;
@@ -43,5 +58,6 @@
       source = ./alacritty;
       recursive = true;
     };
+    "clojure".source = inputs.clojure-deps-edn;
   };
 }

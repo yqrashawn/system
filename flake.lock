@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "clojure-deps-edn": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1650548362,
+        "narHash": "sha256-T4uEd8zAAPV8+Oz6ywCkd1c5D8hh33Dq9BEnxN4M7YI=",
+        "owner": "practicalli",
+        "repo": "clojure-deps-edn",
+        "rev": "d80f83d50104c3eb36dee4c3dc800451e7b2bd75",
+        "type": "github"
+      },
+      "original": {
+        "owner": "practicalli",
+        "repo": "clojure-deps-edn",
+        "type": "github"
+      }
+    },
     "comma": {
       "flake": false,
       "locked": {
@@ -217,6 +233,7 @@
     },
     "root": {
       "inputs": {
+        "clojure-deps-edn": "clojure-deps-edn",
         "comma": "comma",
         "darwin": "darwin",
         "devshell": "devshell",
@@ -229,6 +246,7 @@
         "nixpkgs": "nixpkgs_2",
         "small": "small",
         "sops-nix": "sops-nix",
+        "spacehammer": "spacehammer",
         "stable": "stable",
         "zsh-abbrev-alias": "zsh-abbrev-alias",
         "zsh-alias-tips": "zsh-alias-tips",
@@ -266,6 +284,22 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
+        "type": "github"
+      }
+    },
+    "spacehammer": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1642685591,
+        "narHash": "sha256-O3Mf/m1fUa/AJBi3j5KQcvlCS9SrlQHV1QlevB2tVJ4=",
+        "owner": "agzam",
+        "repo": "spacehammer",
+        "rev": "da5dde7ca9283ae3cd8e4c02e2249f78b9a1e43b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "agzam",
+        "repo": "spacehammer",
         "type": "github"
       }
     },

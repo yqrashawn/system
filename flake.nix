@@ -41,6 +41,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    clojure-deps-edn = {
+      url = "github:practicalli/clojure-deps-edn";
+      flake = false;
+    };
+
+    spacehammer = {
+      url = "github:agzam/spacehammer";
+      flake = false;
+    };
+
     zsh-f-sy-h = {
       url = "github:z-shell/F-Sy-H";
       flake = false;
