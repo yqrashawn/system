@@ -1,5 +1,4 @@
 { config, pkgs, lib, ... }: {
-  imports = [ ./prezto.nix ];
   home.file = {
     # hammerspoon = lib.mkIf pkgs.stdenvNoCC.isDarwin {
     #   source = ./hammerspoon;
