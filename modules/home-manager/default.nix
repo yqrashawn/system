@@ -16,7 +16,6 @@ in {
     ./nvim
     ./cli
     # ./kitty
-    # ./alacritty
     ./dotfiles
     ./git.nix
     # ./1password

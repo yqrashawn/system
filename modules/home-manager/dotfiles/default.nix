@@ -30,5 +30,9 @@
       source = ./yabai;
       recursive = true;
     };
+    alacritty = lib.mkIf pkgs.stdenvNoCC.isDarwin {
+      source = ./alacritty;
+      recursive = true;
+    };
   };
 }
