@@ -10,6 +10,7 @@
     ./zoxide.nix
     ./git.nix
     ./exa.nix
+    ./ripgrep.nix
   ];
   home.packages = [ pkgs.tree ];
   programs = {

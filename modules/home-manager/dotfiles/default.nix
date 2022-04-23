@@ -5,6 +5,15 @@
     #   target = ".hammerspoon";
     #   recursive = true;
     # };
+    ripgrep = {
+      source = ./.ripgreprc;
+      target = ".ripgreprc";
+    };
+    local-bins = {
+      source = ./local-bins;
+      target = "local/bin";
+      recursive = true;
+    };
     raycast = lib.mkIf pkgs.stdenvNoCC.isDarwin {
       source = ./raycast;
       target = ".local/bin/raycast";
