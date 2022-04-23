@@ -7,30 +7,16 @@
     ./direnv.nix
     ./bat.nix
     ./mcfly.nix
+    ./zoxide.nix
+    ./git.nix
+    ./exa.nix
   ];
   home.packages = [ pkgs.tree ];
   programs = {
     jq.enable = true;
     htop.enable = true;
     gpg.enable = true;
-    git = {
-      enable = true;
-      lfs.enable = true;
-      aliases = {
-        ignore =
-          "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}; gi";
-      };
-    };
     go.enable = true;
-    exa = {
-      enable = true;
-      enableAliases = true;
-    };
     nix-index.enable = true;
-    zoxide = {
-      enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
-    };
   };
 }

@@ -92,6 +92,16 @@ in {
     profileExtra = profileExtra;
     plugins = [
       {
+        name = "fzf-tab";
+        file = "fzf-tab.plugin.zsh";
+        src = pkgs.fetchFromGitHub {
+          owner = "Aloxaf";
+          repo = "fzf-tab";
+          rev = "master";
+          sha256 = "sha256-ixUnuNtxxmiigeVjzuV5uG6rIBPY/1vdBZF2/Qv0Trs=";
+        };
+      }
+      {
         name = "fast-syntax-highlighting";
         file = "fast-syntax-highlighting.plugin.zsh";
         src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
