@@ -96,13 +96,13 @@ in {
         file = "fast-syntax-highlighting.plugin.zsh";
         src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
       }
-      {
-        # https://github.com/starship/starship/issues/1721#issuecomment-780250578
-        # stop eating lines this is not pacman
-        name = "zsh-vi-mode";
-        file = "zsh-vi-mode.plugin.zsh";
-        src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/";
-      }
+      # {
+      #   # https://github.com/starship/starship/issues/1721#issuecomment-780250578
+      #   # stop eating lines this is not pacman
+      #   name = "zsh-vi-mode";
+      #   file = "zsh-vi-mode.plugin.zsh";
+      #   src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/";
+      # }
       {
         name = "alias-tips";
         src = inputs.zsh-alias-tips;
@@ -117,6 +117,5 @@ in {
       enable = false;
       plugins = [ "direnv" "aliases" "emacs" "yarn" "globalias" ];
     };
-    prezto = { enable = true; };
   };
 }

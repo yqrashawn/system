@@ -70,7 +70,6 @@
       ripgrep
       htop
       hub
-      mcfly
       fnm
       shellcheck
       proselint

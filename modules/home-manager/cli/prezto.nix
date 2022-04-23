@@ -3,6 +3,7 @@
 let uhome = config.home.homeDirectory;
 in {
   programs.zsh.prezto = {
+    enable = true;
     caseSensitive = false;
     color = true;
     # pmoduleDirs = [ "$HOME/.zprezto-contrib" ];
@@ -13,7 +14,7 @@ in {
       "tmux"
       "terminal"
       "editor"
-      "history"
+      # "history"
       "directory"
       "utility"
       "archive"
@@ -24,12 +25,12 @@ in {
       "ssh"
       "git"
       "spectrum"
-      "python"
+      # "python"
       "command-not-found"
-      "ruby"
-      "completion"
+      # "ruby"
+      # "completion"
       # "autosuggestions"
-      "history-substring-search"
+      # "history-substring-search"
     ];
     editor = {
       keymap = "emacs";
