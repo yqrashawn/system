@@ -151,6 +151,7 @@
           extraModules = [
             ./profiles/personal.nix
             ./modules/darwin/apps.nix
+            ./modules/darwin/apps-minimal.nix
             { homebrew.brewPrefix = "/opt/homebrew/bin"; }
           ];
         };
