@@ -31,6 +31,18 @@ let
     lsa = "exa -abghl --git --color=automatic";
     lsd = "exa -l --color=automatic | grep --color=never '^d'";
     lst = "exa --sort=created --time=created --long --all -r | sed 15q";
+    y = "yarn";
+    ya = "yarn add";
+    yad = "yarn add --dev";
+    yga = "yarn global install";
+    yui = "yarn upgrade-interactive";
+    yv = "yarn version";
+    yvc = "yarn version check";
+    yvi = "yarn version check --interactive";
+    yst = "yarn start";
+    yd = "yarn dev";
+    yx = "yarn remove";
+    yw = "yarn workspace";
   };
 in {
   imports = [ ./prezto.nix ];
