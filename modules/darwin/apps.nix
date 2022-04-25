@@ -21,6 +21,7 @@
       "dropbox"
       "calibre"
       "ngrok"
+      "adguard-nightly"
       # "syncthing"
       "stats"
       "zoom"
