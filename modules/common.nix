@@ -144,6 +144,7 @@
       go
       plantuml
       rustup
+      rust-analyzer
       (pkgs.ruby.withPackages (ps: with ps; [ rufo solargraph ]))
       python3
       ghc

@@ -25,6 +25,7 @@
       # "syncthing"
       "stats"
       "zoom"
+      "warp"
     ];
     masApps = { };
   };

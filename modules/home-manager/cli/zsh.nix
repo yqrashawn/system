@@ -13,6 +13,10 @@ let
     # darwin specific aliases
     ibrew = "arch -x86_64 brew";
     abrew = "arch -arm64 brew";
+    caski = "brew install --cask";
+    caskr = "brew reinstall --cask";
+    casko = "brew outdated --cask";
+    casku = "brew upgrade --cask";
     rm = "trash";
     d = "cd ~/Downloads/";
     wo = "cd ~/workspace/office";
@@ -35,6 +39,7 @@ let
     ya = "yarn add";
     yad = "yarn add --dev";
     yga = "yarn global install";
+    yu = "yarn upgrade";
     yui = "yarn upgrade-interactive";
     yv = "yarn version";
     yvc = "yarn version check";
