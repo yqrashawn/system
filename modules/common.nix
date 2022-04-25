@@ -24,7 +24,7 @@
   environment = {
     systemPackages = with pkgs; [
       # clojure
-      clojure
+      # clojure
       clojure-lsp
       ispell
       isync
@@ -148,7 +148,7 @@
       (pkgs.ruby.withPackages (ps: with ps; [ rufo solargraph ]))
       python3
       ghc
-      openjdk
+      # openjdk
 
       # entertainment
       youtube-dl

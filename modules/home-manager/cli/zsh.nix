@@ -127,6 +127,7 @@ in {
       # {
       #   # https://github.com/starship/starship/issues/1721#issuecomment-780250578
       #   # stop eating lines this is not pacman
+      #   # rewrite C-r
       #   name = "zsh-vi-mode";
       #   file = "zsh-vi-mode.plugin.zsh";
       #   src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/";

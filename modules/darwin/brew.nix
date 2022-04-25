@@ -16,6 +16,7 @@
       "homebrew/core"
       "homebrew/services"
       "homebrew/command-not-found"
+      "railwaycat/emacsmacport"
       "koekeishiya/formulae"
       "teamookla/speedtest"
     ];
