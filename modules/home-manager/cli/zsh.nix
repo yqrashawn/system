@@ -7,6 +7,27 @@ let
     [[ ! -f ~/Dropbox/sync/sync.zsh ]] || source ~/Dropbox/sync/sync.zsh
     export JAVVA_INDEX='https://github.com/yqrashawn/jabba/raw/master/index.json'
     [ -s $HOME/.jabba/jabba.sh ] && source $HOME/.jabba/jabba.sh && jabba use adopt@1.11.0-11
+
+    export FNM_MULTISHELL_PATH=$HOME/.fnm/current
+    export FNM_DIR=$HOME/.fnm/
+    export FNM_NODE_DIST_MIRROR=https://nodejs.org/dist
+    export FNM_LOGLEVEL=info
+    autoload -U add-zsh-hook
+    _fnm_autoload_hook () {
+      if [[ -f .node-version && -r .node-version ]]; then
+        fnm --log-level=error use --install-if-missing
+      elif [[ -f .nvmrc && -r .nvmrc ]]; then
+        fnm --log-level=error use --install-if-missing
+      fi
+    }
+
+    add-zsh-hook chpwd _fnm_autoload_hook \
+      && _fnm_autoload_hook
+
+    if ! typeset -f _fnm > /dev/null; then
+      fpath=(${pkgs.fnm}/share/zsh/site-functions $fpath)
+    fi
+    eval "$(fnm env)"
   '';
   functions = builtins.readFile ./functions.sh;
   aliases = lib.mkIf pkgs.stdenvNoCC.isDarwin {
