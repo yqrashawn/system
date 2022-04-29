@@ -1,4 +1,4 @@
-#!/usr/bin/env /usr/local/bin/node
+#!/usr/bin/env node
 
 // https://github.com/yarnpkg/yarn/issues/6453
 const { execSync } = require("child_process");

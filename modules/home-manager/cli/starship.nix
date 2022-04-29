@@ -87,8 +87,8 @@
         truncate_to_repo = true;
       };
       status = {
-        format =
-          "[[$symbol $status $common_meaning$signal_name$maybe_int]]($style) ";
+        # format =
+        #   "[[$symbol $status $common_meaning$signal_name$maybe_int]]($style) ";
         symbol = "✖ ";
         disabled = false;
         map_symbol = true;
