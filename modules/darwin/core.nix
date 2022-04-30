@@ -61,6 +61,7 @@ in {
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
+  services.lorri.enable = true;
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
