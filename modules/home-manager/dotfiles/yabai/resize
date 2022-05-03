@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export PATH=/run/current-system/sw/bin/:$PATH
+
 function resize {
   while [[ "$1" ]]; do
     yabai -m window --resize "$2":"$1"

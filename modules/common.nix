@@ -131,6 +131,7 @@
       nix-doc
       gawk
       flyctl
+      jet
 
       # langs
       yarn

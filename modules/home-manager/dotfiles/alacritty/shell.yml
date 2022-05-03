@@ -9,6 +9,6 @@
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 shell:
- program: /usr/local/bin/zsh
- args:
-   - --login
+  program: /run/current-system/sw/bin/zsh
+  args:
+    - --login

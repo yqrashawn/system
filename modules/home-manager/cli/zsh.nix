@@ -2,6 +2,8 @@
 
 let
   profileExtra = ''
+    fpath=($HOME/.zfunc $fpath)
+    autoload -Uz $fpath[1]/*
     ${lib.optionalString pkgs.stdenvNoCC.isLinux
     "[[ -e /etc/profile ]] && source /etc/profile"}
     [[ ! -f ~/Dropbox/sync/sync.zsh ]] || source ~/Dropbox/sync/sync.zsh
@@ -69,6 +71,10 @@ let
     yd = "yarn dev";
     yx = "yarn remove";
     yw = "yarn workspace";
+
+    brewss = "brew services start";
+    brewsr = "brew services restart";
+    brewsx = "brew services stop";
   };
 in {
   imports = [ ./prezto.nix ];
