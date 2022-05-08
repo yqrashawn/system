@@ -1,1 +1,1 @@
-system_profiler SPDisplaysDataType | grep 'LG HDR 4K'
+system_profiler SPDisplaysDataType | grep 'LG HDR 4K' || system_profiler SPDisplaysDataType | grep 'U2777B'

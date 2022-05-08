@@ -7,7 +7,7 @@ let
     ${lib.optionalString pkgs.stdenvNoCC.isLinux
     "[[ -e /etc/profile ]] && source /etc/profile"}
     [[ ! -f ~/Dropbox/sync/sync.zsh ]] || source ~/Dropbox/sync/sync.zsh
-    export JAVVA_INDEX='https://github.com/yqrashawn/jabba/raw/master/index.json'
+    export JABBA_INDEX='https://github.com/yqrashawn/jabba/raw/master/index.json'
     [ -s $HOME/.jabba/jabba.sh ] && source $HOME/.jabba/jabba.sh && jabba use adopt@1.11.0-11
 
     export FNM_MULTISHELL_PATH=$HOME/.fnm/current

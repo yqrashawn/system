@@ -15,6 +15,7 @@ elif [[ $DISPLAY_COUNT -eq 1 ]] && [[ "$($HOME/local/bin/has-lg-4k-hdr)" ]]; the
   yabai -m rule --add app="^Newsblur$" space=1
   yabai -m rule --add app="^Reeder$" space=1
   yabai -m rule --add app="^Figma$" space=1
+  yabai -m rule --add app="^Adobe Photoshop" space=1
 
   yabai -m rule --add app="^ClickUp$" space=2
   yabai -m rule --add app="^Logseq$" space=2
@@ -47,6 +48,7 @@ else
   yabai -m rule --add app="^Newsblur$" space=3
   yabai -m rule --add app="^Reeder$" space=3
   yabai -m rule --add app="^Figma$" space=8
+  yabai -m rule --add app="^Adobe Photoshop" space=8
   yabai -m rule --add app="^ClickUp$" space=8
 
   yabai -m rule --add app="^WeChat$" manage=on space=9
