@@ -92,8 +92,10 @@
 (let [display-count (count-display)
 
       base-conf [{:app :Emacs :space 1 :manage :on}
-                 {:app :Emacs :title "^ *Minibuf.*\\*$" :manage :off}
-                 {:app :Emacs :title "^(Emacs Everywhere|edit - )" :manage :off}
+                 {:app :Emacs :title "" :manage :off}
+                 {:app :Emacs :title "^  —  " :manage :off :border :off :topmost :on}
+                 {:app :Emacs :title "^ .Minibuf.*$" :manage :off :border :off :topmost :on}
+                 {:app :Emacs :title "^(Emacs Everywhere|edit - )" :manage :off :topmost :on}
                  {:app :Alacritty :space 1 :manage :off}
                  {:app :Mail :space 1 :manage :off}
                  {:app :Slack :space 1 :manage :off}
@@ -152,9 +154,11 @@
              ;; {:app ".*" :space 1 :manage :off}
              ]
             :else
-            [{:app ".*" :space 1}])
+            []
+            ;; [{:app ".*" :space 1}]
+            )
 
-      config (into config base-conf)
+      config (into base-conf config)
 
       commands
       (process-config config)]
@@ -162,6 +166,6 @@
   (if (or (= display-count 2) (lg-4k?) (home-4k?))
     (apply sh ["yabai" "-m" "config" "layout" "bsp"])
     (apply sh ["yabai" "-m" "config" "layout" "stack"]))
-  (doseq [c (reverse commands)]
+  (doseq [c commands]
     ;; (prn c)
     (slurp (:out (p/process c)))))

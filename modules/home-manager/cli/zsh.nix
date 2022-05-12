@@ -59,6 +59,7 @@ let
     lsd = "exa -l --color=automatic | grep --color=never '^d'";
     lst = "exa --sort=created --time=created --long --all -r | sed 15q";
     y = "yarn";
+    yi = "yarn init";
     ya = "yarn add";
     yad = "yarn add --dev";
     yga = "yarn global install";
