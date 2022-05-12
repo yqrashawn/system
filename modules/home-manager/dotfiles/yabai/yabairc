@@ -16,7 +16,7 @@ export PATH=/run/current-system/sw/bin:$PATH
 sudo yabai --load-sa || true
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
-# . ~/.config/yabai/rules
+. ~/.config/yabai/rules
 
 # global settings
 yabai -m config debug_output off
@@ -44,13 +44,14 @@ yabai -m config mouse_modifier ctrl
 yabai -m config mouse_action1 resize
 yabai -m config mouse_action2 move
 yabai -m config mouse_drop_action swap
+. ~/.config/yabai/set-layout-based-on-display
 yabai -m config top_padding 10
 yabai -m config bottom_padding 10
 yabai -m config left_padding 10
 yabai -m config right_padding 10
 yabai -m config window_gap 10
 
-bb ~/.config/yabai/rules.clj
+# bb ~/.config/yabai/rules.clj
 # . ~/.config/yabai/layout
 . ~/.config/yabai/signals
 

@@ -37,22 +37,21 @@ elif [[ $DISPLAY_COUNT -eq 1 ]] && [[ "$($HOME/local/bin/home-4k)" ]]; then
 
   yabai -m rule --add app="^Mail$" space=1 manage=off
   yabai -m rule --add app="^Newsblur$" space=1 manage=off
-  yabai -m rule --add app="^Reeder$" space=1
+  yabai -m rule --add app="^Reeder$" space=1 manage=off
   yabai -m rule --add app="^Figma$" space=1 manage=off
   yabai -m rule --add app="^Adobe Photoshop" space=1 manage=off
 
-  yabai -m rule --add app="^ClickUp$" space=2
-  yabai -m rule --add app="^Logseq$" space=2
-  yabai -m rule --add app="^Roam$" space=2
-  yabai -m rule --add app="^NotePlan$" space=2
-  yabai -m rule --add app="^Notion$" space=2
-  yabai -m rule --add app="^Todoist$" space=2
+  yabai -m rule --add app="^ClickUp$" space=1 manage=off
+  yabai -m rule --add app="^Roam$" space=1 manage=off
+  yabai -m rule --add app="^NotePlan$" space=1 manage=off
+  yabai -m rule --add app="^Notion$" space=1 manage=off
+  yabai -m rule --add app="^Todoist$" space=1 manage=off
 
   yabai -m rule --add app="^Keybase$" manage=on space=3
-  yabai -m rule --add app="^Discord$" manage=on space=3
-  yabai -m rule --add app="^Telegram$" manage=on space=3
+  yabai -m rule --add app="^Discord$" manage=on space=2
+  yabai -m rule --add app="^Telegram$" manage=on space=2
 
-  yabai -m rule --add app="^NeteaseMusic$" manage=on space=4 manage=off
+  yabai -m rule --add app="^NeteaseMusic$" manage=on space=4
   yabai -m rule --add app="^Endel$" manage=on space=4
   yabai -m rule --add app="^TIDAL$" manage=on space=4
 elif [[ $DISPLAY_COUNT -eq 2 ]]; then
