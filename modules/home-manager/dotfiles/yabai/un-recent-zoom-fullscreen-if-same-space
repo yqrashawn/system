@@ -2,9 +2,14 @@
 
 (ns yabai.layout
   (:require
-   [lib.yabai.core :as y]))
+   [cheshire.core :as json]
+   [clojure.java.shell :refer [sh]]))
 
-(let [{cur-win-space :space} (y/m :query :--windows :--window)
-      {:keys [zoom-fullscreen id space]} (y/m :query :--windows :--window :recent)]
+(let [{cur-win-space :space}             (-> (apply sh ["yabai" "-m" "query" "--windows" "--window"])
+                                             :out
+                                             (json/parse-string keyword))
+      {:keys [zoom-fullscreen id space]} (-> (apply sh ["yabai" "-m" "query" "--windows" "--window" "recent"])
+                                             :out
+                                             (json/parse-string keyword))]
   (when (and (= zoom-fullscreen 1) (= cur-win-space space))
-    (y/m :window id :--toggle :zoom-fullscreen)))
+    (apply sh ["yabai" "-m" "window" id "--toggle" "zoom-fullscreen"])))
