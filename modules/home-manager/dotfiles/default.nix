@@ -15,6 +15,10 @@
       target = ".spacehammer";
       recursive = true;
     };
+    asdf = {
+      source = ./.asdfrc;
+      target = ".asdfrc";
+    };
     ripgrep = {
       source = ./.ripgreprc;
       target = ".ripgreprc";

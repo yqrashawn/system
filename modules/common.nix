@@ -24,7 +24,6 @@
   environment = {
     systemPackages = with pkgs; [
       # clojure
-      # clojure
       clojure-lsp
       ispell
       isync
@@ -132,6 +131,7 @@
       gawk
       flyctl
       jet
+      asdf-vm
 
       # langs
       yarn
@@ -149,6 +149,7 @@
       (pkgs.ruby.withPackages (ps: with ps; [ rufo solargraph ]))
       python3
       ghc
+      sbcl
       # openjdk
 
       # entertainment

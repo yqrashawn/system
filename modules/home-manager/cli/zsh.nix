@@ -7,8 +7,10 @@ let
     ${lib.optionalString pkgs.stdenvNoCC.isLinux
     "[[ -e /etc/profile ]] && source /etc/profile"}
     [[ ! -f ~/Dropbox/sync/sync.zsh ]] || source ~/Dropbox/sync/sync.zsh
-    export JABBA_INDEX='https://github.com/yqrashawn/jabba/raw/master/index.json'
-    [ -s $HOME/.jabba/jabba.sh ] && source $HOME/.jabba/jabba.sh && jabba use adopt@1.11.0-11
+    . ${pkgs.asdf-vm}/etc/profile.d/asdf-prepare.sh
+    . $HOME/.asdf/plugins/java/set-java-home.zsh
+    asdf global java adoptopenjdk-11.0.15+10
+    asdf global clojure 1.10.3.1087
 
     export FNM_MULTISHELL_PATH=$HOME/.fnm/current
     export FNM_DIR=$HOME/.fnm/
@@ -28,6 +30,9 @@ let
 
     if ! typeset -f _fnm > /dev/null; then
       fpath=(${pkgs.fnm}/share/zsh/site-functions $fpath)
+    fi
+    if ! typeset -f _asdf > /dev/null; then
+      fpath=(${pkgs.asdf-vm}/share/zsh/site-functions $fpath)
     fi
     eval "$(fnm env)"
   '';
