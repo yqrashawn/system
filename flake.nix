@@ -131,9 +131,9 @@
           name = system;
           value = {
             darwin =
-              self.darwinConfigurations.randall-intel.config.system.build.toplevel;
-            darwinServer =
-              self.homeConfigurations.darwinServer.activationPackage;
+              self.darwinConfigurations.yqrashawn-intel.config.system.build.toplevel;
+            # darwinServer =
+            #   self.homeConfigurations.darwinServer.activationPackage;
           };
         }) nixpkgs.lib.platforms.darwin) ++
         # linux checks
@@ -141,24 +141,32 @@
           name = system;
           value = {
             nixos = self.nixosConfigurations.phil.config.system.build.toplevel;
-            server = self.homeConfigurations.server.activationPackage;
+            # server = self.homeConfigurations.server.activationPackage;
           };
         }) nixpkgs.lib.platforms.linux));
 
       darwinConfigurations = {
-        randall = mkDarwinConfig {
+        yqrashawn = mkDarwinConfig {
           system = "aarch64-darwin";
           extraModules = [
-            ./profiles/personal.nix
+            ./profiles/yqrashawn.nix
             ./modules/darwin/apps.nix
             ./modules/darwin/apps-minimal.nix
             { homebrew.brewPrefix = "/opt/homebrew/bin"; }
           ];
         };
-        randall-intel = mkDarwinConfig {
+        holybasil = mkDarwinConfig {
+          system = "aarch64-darwin";
+          extraModules = [
+            ./profiles/yqrashawn.nix
+            ./modules/darwin/apps-minimal.nix
+            { homebrew.brewPrefix = "/opt/homebrew/bin"; }
+          ];
+        };
+        yqrashawn-intel = mkDarwinConfig {
           system = "x86_64-darwin";
           extraModules = [
-            ./profiles/personal.nix
+            ./profiles/yqrashawn.nix
             ./modules/darwin/apps.nix
             { homebrew.brewPrefix = "/usr/local/bin"; }
           ];
@@ -176,34 +184,34 @@
             ./modules/hardware/phil.nix
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t460s
           ];
-          extraModules = [ ./profiles/personal.nix ];
+          extraModules = [ ./profiles/yqrashawn.nix ];
         };
       };
 
-      homeConfigurations = {
-        server = mkHomeConfig {
-          username = "yqrashawn";
-          extraModules = [ ./profiles/home-manager/personal.nix ];
-        };
-        darwinServer = mkHomeConfig {
-          username = "yqrashawn";
-          system = "x86_64-darwin";
-          extraModules = [ ./profiles/home-manager/personal.nix ];
-        };
-        darwinServerM1 = mkHomeConfig {
-          username = "yqrashawn";
-          system = "aarch64-darwin";
-          extraModules = [ ./profiles/home-manager/personal.nix ];
-        };
-        workServer = mkHomeConfig {
-          username = "yqrashawn";
-          extraModules = [ ./profiles/home-manager/work.nix ];
-        };
-        vagrant = mkHomeConfig {
-          username = "vagrant";
-          extraModules = [ ./profiles/home-manager/personal.nix ];
-        };
-      };
+      # homeConfigurations = {
+      #   server = mkHomeConfig {
+      #     username = "yqrashawn";
+      #     extraModules = [ ./profiles/home-manager/yqrashawn.nix ];
+      #   };
+      #   darwinServer = mkHomeConfig {
+      #     username = "yqrashawn";
+      #     system = "x86_64-darwin";
+      #     extraModules = [ ./profiles/home-manager/yqrashawn.nix ];
+      #   };
+      #   darwinServerM1 = mkHomeConfig {
+      #     username = "yqrashawn";
+      #     system = "aarch64-darwin";
+      #     extraModules = [ ./profiles/home-manager/yqrashawn.nix ];
+      #   };
+      #   workServer = mkHomeConfig {
+      #     username = "yqrashawn";
+      #     extraModules = [ ./profiles/home-manager/work.nix ];
+      #   };
+      #   vagrant = mkHomeConfig {
+      #     username = "vagrant";
+      #     extraModules = [ ./profiles/home-manager/yqrashawn.nix ];
+      #   };
+      # };
     } //
     # add a devShell to this flake
     eachDefaultSystem (system:

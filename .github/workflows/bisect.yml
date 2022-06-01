@@ -43,7 +43,7 @@ jobs:
     strategy:
       matrix:
         configuration:
-          - darwinConfigurations.randall.config.system.build.toplevel
+          - darwinConfigurations.yqrashawn.config.system.build.toplevel
     steps:
     - uses: actions/checkout@v3
       with:
