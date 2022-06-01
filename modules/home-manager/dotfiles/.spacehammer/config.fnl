@@ -553,6 +553,8 @@
 (local brv "com.brave.Browser")
 (local vv "com.vivaldi.Vivaldi")
 (local ffd "org.mozilla.firefoxdeveloperedition")
+(local orion "com.kagi.kagimacOS")
+(local edge "com.microsoft.edgemac.Beta")
 (local ff "org.mozilla.firefox")
 (local chrm "com.google.Chrome")
 (local chrmc "com.google.Chrome.canary")
@@ -570,7 +572,7 @@
                   ["tg:" "ru.keepcoder.Telegram"]
                   ["https://yqrashawn.deta.dev.*" chrm]
                   ;; ["http://localhost:.*" chrm]
-                  ["http://localhost:.*" ffd]
+                  ["http://localhost:.*" chrm]
                   ["https://app.clickup.com" clickup]
                   ["https://www.figma.com/file" figma]
                   ["https://alidocs.dingtalk.com" chrm]
@@ -591,7 +593,8 @@
                          false
                          "Preview"]]
 
-   :default_handler ffd}})
+   ;; :default_handler ffd
+   :default_handler edge}})
 
 (comment
  (local col hs.drawing.color.x11))

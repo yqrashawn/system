@@ -65,6 +65,7 @@
       duf # du
       jq
       fd
+      # gitui
       # httpie # failed to build
       tealdeer # tldr in rust
       procs # ps
@@ -150,6 +151,8 @@
       python3
       ghc
       sbcl
+      perl534Packages.GitAutofixup # https://github.com/torbiak/git-autofixup
+      git-absorb # https://github.com/tummychow/git-absorb
       # openjdk
 
       # entertainment

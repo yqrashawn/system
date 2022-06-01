@@ -77,6 +77,7 @@ let
     yd = "yarn dev";
     yx = "yarn remove";
     yw = "yarn workspace";
+    curl = "curlie";
 
     brewss = "brew services start";
     brewsr = "brew services restart";

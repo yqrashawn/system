@@ -6,7 +6,7 @@ let
     repo = ".tmux";
     rev = "master";
     stripRoot = false;
-    sha256 = "sha256-ThpsDpOItQr1XaZyHiHApsicVefPYpn+r8wnVyQ6M6w=";
+    sha256 = "sha256-eYOhxNPfIobdlB8bLBmG7cYNLeWYjTYP6upwimBLj74=";
   };
 in {
   home.file.".tmux.conf".text =
