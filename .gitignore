@@ -8,3 +8,5 @@ __pycache__/
 /.lsp/
 /.clj-kondo/
 /tags
+/modules/yqrashawn/home-manager/dotfiles/.datomic/*
+!/modules/yqrashawn/home-manager/dotfiles/.datomic/dev-local.edn
