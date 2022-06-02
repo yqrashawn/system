@@ -82,7 +82,17 @@
       mkDarwinConfig = { system, nixpkgs ? inputs.nixpkgs
         , stable ? inputs.stable, baseModules ? [
           home-manager.darwinModules.home-manager
-          ./modules/darwin
+          ./modules/yqrashawn/darwin
+        ], extraModules ? [ ] }:
+        darwinSystem {
+          inherit system;
+          modules = baseModules ++ extraModules;
+          specialArgs = { inherit inputs nixpkgs stable; };
+        };
+      mkhDarwinConfig = { system, nixpkgs ? inputs.nixpkgs
+        , stable ? inputs.stable, baseModules ? [
+          home-manager.darwinModules.home-manager
+          ./modules/holybasil/darwin
         ], extraModules ? [ ] }:
         darwinSystem {
           inherit system;
@@ -96,7 +106,7 @@
         , stable ? inputs.stable, hardwareModules, baseModules ? [
           home-manager.nixosModules.home-manager
           sops-nix.nixosModules.sops
-          ./modules/nixos
+          ./modules/yqrashawn/nixos
         ], extraModules ? [ ] }:
         nixosSystem {
           inherit system;
@@ -108,7 +118,7 @@
       # with overlays and any extraModules applied
       mkHomeConfig = { username, system ? "x86_64-linux"
         , nixpkgs ? inputs.nixpkgs, stable ? inputs.stable, baseModules ? [
-          ./modules/home-manager
+          ./modules/yqrashawn/home-manager
           {
             home.sessionVariables = {
               NIX_PATH =
@@ -121,7 +131,8 @@
           homeDirectory = "${homePrefix system}/${username}";
           extraSpecialArgs = { inherit inputs nixpkgs stable; };
           configuration = {
-            imports = baseModules ++ extraModules ++ [ ./modules/overlays.nix ];
+            imports = baseModules ++ extraModules
+              ++ [ ./modules/yqrashawn/overlays.nix ];
           };
         };
     in {
@@ -150,16 +161,16 @@
           system = "aarch64-darwin";
           extraModules = [
             ./profiles/yqrashawn.nix
-            ./modules/darwin/apps.nix
-            ./modules/darwin/apps-minimal.nix
+            ./modules/yqrashawn/darwin/apps.nix
+            ./modules/yqrashawn/darwin/apps-minimal.nix
             { homebrew.brewPrefix = "/opt/homebrew/bin"; }
           ];
         };
-        holybasil = mkDarwinConfig {
+        holybasil = mkhDarwinConfig {
           system = "aarch64-darwin";
           extraModules = [
-            ./profiles/yqrashawn.nix
-            ./modules/darwin/apps-minimal.nix
+            ./profiles/holybasil.nix
+            ./modules/holybasil/darwin/apps-minimal.nix
             { homebrew.brewPrefix = "/opt/homebrew/bin"; }
           ];
         };
@@ -167,21 +178,21 @@
           system = "x86_64-darwin";
           extraModules = [
             ./profiles/yqrashawn.nix
-            ./modules/darwin/apps.nix
+            ./modules/yqrashawn/darwin/apps.nix
             { homebrew.brewPrefix = "/usr/local/bin"; }
           ];
         };
         work = mkDarwinConfig {
           system = "x86_64-darwin";
           extraModules =
-            [ ./profiles/work.nix ./modules/darwin/apps-minimal.nix ];
+            [ ./profiles/work.nix ./modules/yqrashawn/darwin/apps-minimal.nix ];
         };
       };
 
       nixosConfigurations = {
         phil = mkNixosConfig {
           hardwareModules = [
-            ./modules/hardware/phil.nix
+            ./modules/yqrashawn/hardware/phil.nix
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t460s
           ];
           extraModules = [ ./profiles/yqrashawn.nix ];

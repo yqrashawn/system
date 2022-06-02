@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }: {
   programs.git = {
-    userEmail = "holybasil@gmail.com";
+    userEmail = "holybasil.1128@gmail.com";
     userName = "holybasil";
     signing = {
-      key = "holybasil@gmail.com";
+      key = "holybasil.1128@gmail.com";
       signByDefault = true;
     };
   };

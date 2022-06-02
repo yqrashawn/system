@@ -13,13 +13,13 @@ in [flake.nix](./flake.nix). Platorm specific configurations are found defined i
 
 ### Overlapping Nix-Darwin and NixOS
 
-Nix-Darwin and NixOS configurations share as much overlap as possible in the common module, [./modules/common.nix](./modules/common.nix).
-Platform specific modules add onto the common module in [./modules/darwin/default.nix](./modules/darwin/default.nix) and [./modules/nixos/default.nix](./modules/nixos/default.nix) for macOS and NixOS respectively.
+Nix-Darwin and NixOS configurations share as much overlap as possible in the common module, [./modules/yqrashawn/common.nix](./modules/yqrashawn/common.nix).
+Platform specific modules add onto the common module in [./modules/yqrashawn/darwin/default.nix](./modules/yqrashawn/darwin/default.nix) and [./modules/yqrashawn/nixos/default.nix](./modules/yqrashawn/nixos/default.nix) for macOS and NixOS respectively.
 
 ### Decoupled Home Manager Configuration
 
 My home-manager configuration is entirely decoupled from NixOS and nix-darwin configurations.
-This means that all of its modules are found in [./modules/home-manager](./modules/home-manager).
+This means that all of its modules are found in [./modules/yqrashawn/home-manager](./modules/yqrashawn/home-manager).
 These modules are imported into all other configurations in the common module similarly to this:
 
 ```nix
@@ -28,7 +28,7 @@ These modules are imported into all other configurations in the common module si
 }
 ```
 
-This means that [home.nix](./modules/home-manager/home.nix) is fully compatible as a standalone configuration, managed with the `home-manager` CLI.
+This means that [home.nix](./modules/yqrashawn/home-manager/home.nix) is fully compatible as a standalone configuration, managed with the `home-manager` CLI.
 This allows close replication of any user config for any linux system running nix. These configurations are defined in the `homeConfigurations` output.
 
 ### User Customization

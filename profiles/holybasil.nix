@@ -1,4 +1,4 @@
 { config, lib, pkgs, ... }: {
-  user.name = "bolybasil";
-  hm = { imports = [ ./home-manager/yqrashawn.nix ]; };
+  user.name = "holybasil";
+  hm = { imports = [ ./home-manager/holybasil.nix ]; };
 }
